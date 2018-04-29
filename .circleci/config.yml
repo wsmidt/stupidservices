@@ -40,3 +40,6 @@ jobs:
         
       # run tests!
       - run: sbt echo/test:test
+
+      # build/publish the service
+      - run: sbt echo/docker:publish
