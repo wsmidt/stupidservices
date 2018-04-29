@@ -44,7 +44,9 @@ jobs:
       - run: sbt echo/test:test
 
       # set docker permissions
-      - run: set -e; sudo addgroup --system docker; sudo adduser $USER docker; newgrp docker;
+      - run: sudo addgroup --system docker | true
+      - run: sudo adduser $USER docker | true
+      - run: newgrp docker | true
 
       # build/publish the service
       - run: sbt echo/docker:publish
