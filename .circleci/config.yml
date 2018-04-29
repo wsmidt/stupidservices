@@ -24,6 +24,7 @@ jobs:
     
     steps:
       - checkout
+      - setup_remote_docker
 
       # Download and cache dependencies
       - restore_cache:
@@ -42,11 +43,6 @@ jobs:
         
       # run tests!
       - run: sbt echo/test:test
-
-      # set docker permissions
-      - run: sudo addgroup --system docker | true
-      - run: sudo adduser $USER docker | true
-      - run: newgrp docker | true
 
       # build/publish the service
       - run: sbt echo/docker:publish
