@@ -32,10 +32,11 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: sbt echo/test:compile
+      - run: sbt clean echo/test:compile
 
       - save_cache:
           paths:
+            - ~/.sbt
             - ~/.ivy2
           key: v1-dependencies-{{ checksum "build.sbt" }}
         
