@@ -42,5 +42,12 @@ jobs:
       # run tests!
       - run: sbt echo/test:test
 
+      # set docker permissions
+      - run: 
+        - >
+          sudo addgroup --system docker
+          sudo adduser $USER docker
+          newgrp docker
+
       # build/publish the service
       - run: sbt echo/docker:publish
