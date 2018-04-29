@@ -44,8 +44,8 @@ jobs:
 
       # set docker permissions
       - run:
-        halt_build_on_fail: false
         command: |
+          set -e
           sudo addgroup --system docker
           sudo adduser $USER docker
           newgrp docker
