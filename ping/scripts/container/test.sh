@@ -3,7 +3,7 @@
 ## TODO curl can nont connect in circleci but will localy
 #       return to investigate this...
 #
-#DOCKER_REPO=scarab/stupidservices/ping
+#DOCKER_REPO=scarab/ping
 #
 ## start the container
 #docker run -p 8080:80 -d $DOCKER_REPO:latest 
