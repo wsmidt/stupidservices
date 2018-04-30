@@ -2,7 +2,7 @@
 #
 version: 2
 jobs:
-  build:
+  publish:
     docker:
       # specify the version you desire here
       - image: circleci/openjdk:8-jdk
@@ -20,3 +20,14 @@ jobs:
       - run: ./scripts/circleci/sscontainer.sh build ping
       - run: ./scripts/circleci/sscontainer.sh test ping
       - run: ./scripts/circleci/sscontainer.sh publish ping
+
+  deploy:
+    requires:
+      - publish
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - publish
+      - deploy
