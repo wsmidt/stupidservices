@@ -3,10 +3,7 @@
 DOCKER_REPO=scarab/stupidservices/ping
 
 # start the container
-docker run -p 8080:80 -d $DOCKER_REPO:latest 
-
-# give the container some time to come up
-sleep 5
+docker run -p 8080:80 $DOCKER_REPO:latest 
 
 # curl the endpoint
 RESULT=`curl localhost:8080/ping`
