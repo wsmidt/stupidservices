@@ -3,6 +3,8 @@
 version: 2
 jobs:
   publish:
+    docker:
+
     environment:
       TERM: dumb
     
@@ -16,6 +18,7 @@ jobs:
       - run: ./scripts/circleci/sscontainer.sh publish ping
 
   deploy:
+    docker:
     requires:
       - publish
     steps:
