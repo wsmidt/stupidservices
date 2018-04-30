@@ -33,7 +33,7 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: ./scripts/circleci/sscontainer.sh build echo
+      - run: ./scripts/circleci/sscontainer.sh build ping
 
       - save_cache:
           paths:
@@ -42,7 +42,7 @@ jobs:
           key: v1-dependencies-{{ checksum "project/Dependencies.scala" }}
         
       # run tests!
-      - run: ./scripts/circleci/sscontainer.sh test echo
+      - run: ./scripts/circleci/sscontainer.sh test ping
 
       # build/publish the service
-      - run: ./scripts/circleci/sscontainer.sh publish echo
+      - run: ./scripts/circleci/sscontainer.sh publish ping
