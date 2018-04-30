@@ -27,11 +27,10 @@ jobs:
 
 workflows:
   version: 2
-  build_and_test:
+  publish_and_deploy:
     jobs:
       - publish
-
       - deploy:
-        requires:
-          - publish
+          requires:
+            - publish
 
