@@ -26,12 +26,15 @@ jobs:
       - checkout
       - setup_remote_docker
 
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+
       # Download and cache dependencies
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "project/Dependencies.scala" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
+
 
       - run: ./scripts/circleci/sscontainer.sh build ping
 
