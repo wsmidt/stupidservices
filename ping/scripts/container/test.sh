@@ -1,9 +1,9 @@
-#!/bin/bash -e
+#!/bin/bash -ex
 
 DOCKER_REPO=scarab/stupidservices/ping
 
 # start the container
-docker run -p 8080:80 $DOCKER_REPO:latest 
+docker run -p 8080:80 -d $DOCKER_REPO:latest 
 
 # curl the endpoint
 RESULT=`curl localhost:8080/ping`
