@@ -3,12 +3,6 @@
 version: 2
 jobs:
   publish:
-    docker:
-      # specify the version you desire here
-      - image: circleci/openjdk:8-jdk
-
-    working_directory: ~/repo
-
     environment:
       TERM: dumb
     
@@ -24,6 +18,8 @@ jobs:
   deploy:
     requires:
       - publish
+    steps:
+      - run: echo "test"
 
 workflows:
   version: 2
