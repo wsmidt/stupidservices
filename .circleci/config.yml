@@ -33,7 +33,7 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: sbt clean echo/test:compile
+      - run: ./scripts/circleci/sscontainer.sh build echo
 
       - save_cache:
           paths:
@@ -42,7 +42,7 @@ jobs:
           key: v1-dependencies-{{ checksum "project/Dependencies.scala" }}
         
       # run tests!
-      - run: sbt echo/test:test
+      - run: ./scripts/circleci/sscontainer.sh test echo
 
       # build/publish the service
-      - run: sbt echo/docker:publish
+      - run: ./scripts/circleci/sscontainer.sh publish echo
