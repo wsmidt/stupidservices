@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-DOCKER_REPO=scarab/ping
+DOCKER_REPO=stupidservices/ping
 
 THIS_SCRIPT=`dirname "$0"`
 PROJECT_DIR=$THIS_SCRIPT/../../
