@@ -1,5 +1,3 @@
-# Scala CircleCI 2.0 configuration file
-#
 # Check https://circleci.com/docs/2.0/sample-config/ for more details
 #
 version: 2
@@ -9,17 +7,10 @@ jobs:
       # specify the version you desire here
       - image: circleci/openjdk:8-jdk
       - image: docker:17.05.0-ce-git
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
 
     working_directory: ~/repo
 
     environment:
-      # Customize the JVM maximum heap limit
-      JVM_OPTS: -Xmx3200m
       TERM: dumb
     
     steps:
@@ -27,25 +18,6 @@ jobs:
       - setup_remote_docker
 
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "project/Dependencies.scala" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
-
       - run: ./scripts/circleci/sscontainer.sh build ping
-
-      - save_cache:
-          paths:
-            - ~/.sbt
-            - ~/.ivy2
-          key: v1-dependencies-{{ checksum "project/Dependencies.scala" }}
-        
-      # run tests!
       - run: ./scripts/circleci/sscontainer.sh test ping
-
-      # build/publish the service
       - run: ./scripts/circleci/sscontainer.sh publish ping
