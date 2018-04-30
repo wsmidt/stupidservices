@@ -22,9 +22,6 @@ jobs:
     docker:
       - image: circleci/openjdk:8-jdk
 
-    requires:
-      - publish
-
     steps:
       - run: echo "test"
 
@@ -33,4 +30,8 @@ workflows:
   build_and_test:
     jobs:
       - publish
+
       - deploy
+        requires:
+          - publish
+
