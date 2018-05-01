@@ -1,12 +1,8 @@
-circleci scripts:
-  - build.sh
-  - test.sh
-  - publish.sh
-
 project structure:
 ```
 stupidservices/
               |-- scripts/circleci/sscontainer.sh
+              |-- scripts/circleci/deploy.sh
               |
               |-- <someservice>/scripts/container/
                                                  |-- build.sh

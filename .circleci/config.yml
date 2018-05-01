@@ -23,6 +23,12 @@ jobs:
       - image: circleci/openjdk:8-jdk
 
     steps:
+      - checkout
+      # TODO we should be running in a container with this pre installed
+      - run: ./scripts/install-ecs-cli.sh linux
+      - run: ./scripts/circleci/deploy.sh
+
+    steps:
       - run: echo "test"
 
 workflows:

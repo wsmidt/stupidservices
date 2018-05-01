@@ -8,6 +8,7 @@ Requirements
 - java8
 - sbt
 - docker
+- ecs-cli
 
 Setup
 -----
@@ -40,9 +41,7 @@ $sudo adduser $USER docker
 $newgrp docker
 ```
 
-Development
------------
-Run the echo service localy
+Install ecs-cli
 ```
-$sbt echo/run
+$scripts/install-ecs-cli.sh
 ```
