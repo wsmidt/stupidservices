@@ -28,9 +28,6 @@ jobs:
       - run: ./scripts/install-ecs-cli.sh linux
       - run: ./scripts/circleci/deploy.sh
 
-    steps:
-      - run: echo "test"
-
 workflows:
   version: 2
   publish_and_deploy:
