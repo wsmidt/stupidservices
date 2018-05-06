@@ -14,9 +14,9 @@ jobs:
       - setup_remote_docker
 
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
-      - run: ./scripts/circleci/sscontainer.sh build ping
-      - run: ./scripts/circleci/sscontainer.sh test ping
-      - run: ./scripts/circleci/sscontainer.sh publish ping
+      - run: ./scripts/circleci/sscontainer.sh build ping $CIRCLE_BUILD_NUM
+      - run: ./scripts/circleci/sscontainer.sh test ping $CIRCLE_BUILD_NUM
+      - run: ./scripts/circleci/sscontainer.sh publish ping $CIRCLE_BUILD_NUM
 
   deploy:
     docker:
@@ -26,7 +26,7 @@ jobs:
       - checkout
       # TODO we should be running in a container with this pre installed
       - run: ./scripts/install-ecs-cli.sh linux
-      - run: ./scripts/circleci/deploy.sh
+      - run: ./scripts/circleci/deploy.sh $CIRCLE_BUILD_NUM
 
 workflows:
   version: 2

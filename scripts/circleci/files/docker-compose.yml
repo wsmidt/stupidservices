@@ -1,6 +1,6 @@
 version: '2'
 services:
   web:
-    image: stupidservices/ping:latest
+    image: "stupidservices/ping:${SSERVICES_TAG_VERSION}"
     ports:
      - "80:80"

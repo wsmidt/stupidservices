@@ -5,9 +5,10 @@ REPO_ROOT=$THIS_SCRIPT/../../
 
 ACTION=$1
 SERVICE=$2
+VERSION=$3
 
-if [ -z "$ACTION" ] || [ -z "$SERVICE" ]; then
-  echo "Usage: $0 ACTION SERVICE"
+if [ -z "$ACTION" ] || [ -z "$SERVICE" ] || [ -z "$VERISON" ]; then
+  echo "Usage: $0 ACTION SERVICE VERSION"
   exit 1
 fi
 
@@ -31,4 +32,4 @@ if [ ! -f "$SERVICE_SCRIPT" ]; then
   exit 1
 fi
 
-eval $SERVICE_SCRIPT
+$SERVICE_SCRIPT $VERSION
