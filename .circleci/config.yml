@@ -12,7 +12,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: export VERSION=$(./scripts/circleci/buildversion.sh)
+      - run: export VERSION="$(./scripts/circleci/buildversion.sh)"
       - run: echo "build version: $VERSION"
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: ./scripts/circleci/sscontainer.sh build ping $VERSION
@@ -25,7 +25,7 @@ jobs:
 
     steps:
       - checkout
-      - run: export VERSION=$(./scripts/circleci/buildversion.sh)
+      - run: export VERSION="$(./scripts/circleci/buildversion.sh)"
       - run: echo "build version: $VERSION"
       # TODO we should be running in a container with this pre installed
       - run: ./scripts/install-ecs-cli.sh linux
