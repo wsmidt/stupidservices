@@ -25,7 +25,6 @@ jobs:
     steps:
       - checkout
       - run: export VERSION=$( eval ./scripts/circleci/buildversion.sh )
-      - run: echo "build version: $VERSION"
       # TODO we should be running in a container with this pre installed
       - run: ./scripts/install-ecs-cli.sh linux
       - run: ./scripts/circleci/deploy.sh $VERSION
