@@ -8,16 +8,18 @@ jobs:
 
     environment:
       TERM: dumb
-      VERSION: "${CIRCLE_SHA1:0:7}"
     
     steps:
       - checkout
       - setup_remote_docker
-      - run: echo $VERSION
+      # we unfortunetly can not export an env var. circleci issue.
+      #   the reply here: https://discuss.circleci.com/t/how-to-set-env-vars-for-local-builds-using-circleci-2-0/12714
+      #   would love to use scripts/circleci/buildversion.sh once we can.
+      - run: echo "version ${CIRCLE_SHA1:0:7}"
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
-      - run: ./scripts/circleci/sscontainer.sh build ping $VERSION
-      - run: ./scripts/circleci/sscontainer.sh test ping $VERSION
-      - run: ./scripts/circleci/sscontainer.sh publish ping $VERSION
+      - run: ./scripts/circleci/sscontainer.sh build ping ${CIRCLE_SHA1:0:7}
+      - run: ./scripts/circleci/sscontainer.sh test ping ${CIRCLE_SHA1:0:7}
+      - run: ./scripts/circleci/sscontainer.sh publish ping ${CIRCLE_SHA1:0:7}
 
   deploy:
     docker:
@@ -25,10 +27,10 @@ jobs:
 
     steps:
       - checkout
-      - run: export VERSION=$( eval ./scripts/circleci/buildversion.sh )
+      - run: echo "version ${CIRCLE_SHA1:0:7}"
       # TODO we should be running in a container with this pre installed
       - run: ./scripts/install-ecs-cli.sh linux
-      - run: ./scripts/circleci/deploy.sh $VERSION
+      - run: ./scripts/circleci/deploy.sh ${CIRCLE_SHA1:0:7}
 
 workflows:
   version: 2
