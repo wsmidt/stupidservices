@@ -8,12 +8,11 @@ jobs:
 
     environment:
       TERM: dumb
-      VERSION: $( eval ./scripts/circleci/buildversion.sh )
+      VERSION: ${CIRCLE_SHA1:0:7}
     
     steps:
       - checkout
       - setup_remote_docker
-      - run: echo ${CIRCLE_SHA1:0:7}
       - run: echo $VERSION
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: ./scripts/circleci/sscontainer.sh build ping $VERSION
