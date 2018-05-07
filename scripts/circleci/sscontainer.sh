@@ -7,7 +7,7 @@ ACTION=$1
 SERVICE=$2
 VERSION=$3
 
-if [ -z "$ACTION" ] || [ -z "$SERVICE" ] || [ -z "$VERISON" ]; then
+if [ -z "$ACTION" ] || [ -z "$SERVICE" ] || [ -z "$VERSION" ]; then
   echo "Usage: $0 ACTION SERVICE VERSION"
   exit 1
 fi
