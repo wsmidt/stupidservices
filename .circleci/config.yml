@@ -8,15 +8,12 @@ jobs:
 
     environment:
       TERM: dumb
-      VERSION: ${CIRCLE_SHA1:0:5}
     
     steps:
       - checkout
       - setup_remote_docker
 
-      - run: echo $VARION
-      - run: echo $CIRCLE_SHA1
-      - run: echo ${CIRCLE_SHA1:0:5}
+      - run: export VERSION=`./scripts/circleci/buildversion.sh`
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: ./scripts/circleci/sscontainer.sh build ping $VERSION
       - run: ./scripts/circleci/sscontainer.sh test ping $VERSION
@@ -28,6 +25,7 @@ jobs:
 
     steps:
       - checkout
+      - run: export VERSION=`./scripts/circleci/buildversion.sh`
       # TODO we should be running in a container with this pre installed
       - run: ./scripts/install-ecs-cli.sh linux
       - run: ./scripts/circleci/deploy.sh $VERSION
