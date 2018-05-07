@@ -13,6 +13,7 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: export VERSION=$( eval ./scripts/circleci/buildversion.sh )
+      - run: echo $VERSION
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: ./scripts/circleci/sscontainer.sh build ping $VERSION
       - run: ./scripts/circleci/sscontainer.sh test ping $VERSION
