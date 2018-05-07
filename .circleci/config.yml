@@ -8,7 +8,7 @@ jobs:
 
     environment:
       TERM: dumb
-      VERSION: $(./scripts/circleci/buildversion.sh)
+      VERSION: $( eval ./scripts/circleci/buildversion.sh )
     
     steps:
       - checkout
