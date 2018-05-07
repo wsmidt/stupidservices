@@ -4,7 +4,7 @@ THIS_SCRIPT=`dirname "$0"`
 
 VERSION=$1
 
-if [ -z "$VERISON" ]; then
+if [ -z "$VERSION" ]; then
   echo "Usage: $0 VERSION"
   exit 1
 fi
