@@ -12,7 +12,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: export VERSION=`./scripts/circleci/buildversion.sh`
+      - run: export VERSION=${CIRCLE_SHA1:0:7}
       - run: echo ${CIRCLE_SHA1:0:7}
       - run: echo $VERSION
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
